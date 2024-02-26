@@ -26,5 +26,6 @@ for (let i = 0; i < tasks.length; i++) {
   <li class="elements">
     <input type="checkbox">
     <span>${tasks[i].name}</span>
-  </li>`;
+  </li>
+  `;
 }
