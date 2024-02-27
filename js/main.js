@@ -20,11 +20,10 @@ const tasks = [
 ];
 
 const listTasks = document.querySelector(".list");
-const spans = document.querySelectorAll('.js-span');
-const checks = document.querySelectorAll('.js-check');
+const spans = document.querySelectorAll(".js-span");
+const checks = document.querySelectorAll(".js-check");
 
-function renderTasks(){
-
+function renderTasks() {
   for (let i = 0; i < tasks.length; i++) {
     listTasks.innerHTML += `
     <li class="elements">
@@ -32,21 +31,8 @@ function renderTasks(){
       <span class="js-span">${tasks[i].name} </span>
     </li>
     `;
-    if(tasks[i].completed === true){
-      spans[i].classList.add('crossOut');
-    }
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 renderTasks();
 
