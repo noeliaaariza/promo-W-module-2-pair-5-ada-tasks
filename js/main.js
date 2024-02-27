@@ -20,20 +20,32 @@ const tasks = [
 ];
 
 const listTasks = document.querySelector(".list");
-const spans = document.querySelectorAll(".js-span");
-const checks = document.querySelectorAll(".js-check");
 
 function renderTasks() {
-  for (let i = 0; i < tasks.length; i++) {
+  for (const task of tasks) {
     listTasks.innerHTML += `
-    <li class="elements">
-      <input  id= ${tasks.name} class="js-check" type="checkbox">
-      <span class="js-span">${tasks[i].name} </span>
-    </li>
+      <li class="elements">
+        <input id="check-${task.name}" class="js-check" type="checkbox">
+        <span class="js-span">${task.name}</span>
+      </li>
     `;
+  }
+
+  const checks = document.querySelectorAll(".js-check");
+  for (const check of checks) {
+    check.addEventListener("change", handleCheckboxChange);
+  }
+}
+
+function handleCheckboxChange(event) {
+  const checkbox = event.target;
+  const span = checkbox.nextElementSibling;
+
+  if (checkbox.checked) {
+    span.classList.add("crossOut");
+  } else {
+    span.classList.remove("crossOut");
   }
 }
 
 renderTasks();
-
-// check.addEventListener('click', handleclick);
