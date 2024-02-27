@@ -20,30 +20,22 @@ const tasks = [
 ];
 
 const listTasks = document.querySelector(".list");
+const spans = document.querySelectorAll('.js-span');
+const checks = document.querySelectorAll('.js-check');
 
-for (let i = 0; i < tasks.length; i++) {
-  listTasks.innerHTML += `
-  <li class="elements">
-    <input class="js-check" type="checkbox">
-    <span class="js-tick">${tasks[i].name}</span>
-  </li>
-  `;
-}
+function renderTasks(){
 
-const tick = document.querySelector('.js-tick');
-const check = document.querySelector('.js-check');
-
-function handleclick(){
-
-for(task of tasks){
-  if(tasks.completed === true){
-      tick.classList.add('crossOut');
+  for (let i = 0; i < tasks.length; i++) {
+    listTasks.innerHTML += `
+    <li class="elements">
+      <input  id= ${tasks.name} class="js-check" type="checkbox">
+      <span class="js-span">${tasks[i].name} </span>
+    </li>
+    `;
+    if(tasks[i].completed === true){
+      spans[i].classList.add('crossOut');
     }
-}
-  // for(let i = 0; i < tasks.length; i++) 
-  // if(tasks.completed === true){
-  //   tick.classList.add('crossOut');
-  // }
+  }
 }
 
 
@@ -51,4 +43,11 @@ for(task of tasks){
 
 
 
-check.addEventListener('click', handleclick);
+
+
+
+
+
+renderTasks();
+
+// check.addEventListener('click', handleclick);
