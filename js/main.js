@@ -27,4 +27,4 @@ function renderTasks(tareas) {
   }
 }
 
-// check.addEventListener('click', handleclick);
+check.addEventListener("click", handleclick);
