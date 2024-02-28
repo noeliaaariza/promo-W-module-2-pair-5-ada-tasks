@@ -24,11 +24,7 @@ function renderTasks(tareas) {
         <span class="js-span">${tarea.name} </span>
       </li>
       `;
-    //console.log(tarea.name);
   }
 }
-
-//Completa el código;
-//Guarda la respuesta obtenida enla variable para el listado de tareas: `tasks`
 
 // check.addEventListener('click', handleclick);
