@@ -17,14 +17,48 @@ fetch(SERVER_URL)
   });
 
 function renderTasks(tareas) {
+  listTasks.innerHTML = "";
   for (const tarea of tareas) {
+    const checked = tarea.completed ? "checked" : "";
+    const classLi = tarea.completed ? "crossOut" : "";
+
+    // Agrega la tarea al array
+    tasks.push(tarea);
+
     listTasks.innerHTML += `
-      <li class="elements">
-        <input class="js-check" type="checkbox">
-        <span class="js-span">${tarea.name} </span>
-      </li>
-      `;
+        <li class="elements">
+          <input class="js-check" type="checkbox" ${checked} id="${tarea.name}">
+          <span class="js-span ${classLi}">${tarea.name} </span>
+        </li>
+        `;
+    /* if (tarea.completed) {
+      listTasks.innerHTML += `
+        <li class="elements">
+          <input class="js-check" type="checkbox" checked>
+          <span class="js-span crossOut">${tarea.name} </span>
+        </li>
+        `;
+    } else {
+      listTasks.innerHTML += `
+        <li class="elements">
+          <input class="js-check" type="checkbox">
+          <span class="js-span">${tarea.name} </span>
+        </li>
+        `;
+    } */
   }
 }
 
-check.addEventListener("click", handleclick);
+function handleClickCheckbox(event) {
+  const inputId = event.target.id;
+  console.log(inputId);
+  const taskIndex = tasks.findIndex((task) => {
+    return task.name === inputId;
+  });
+  tasks[taskIndex].completed = true;
+  renderTasks(tasks);
+}
+
+listTasks.addEventListener("click", handleClickCheckbox);
+
+// método findIndex devuelve el primer resultado que coincide con la condición que devuelve el return. Siempre un método pide una función dentro, y el return recoge el valor.Pasamos el parámetro tarea, que hemos asociado con el tasks.findIndex al que se le pasa siempre una función con parámetro. Declaramos la variable inputID, que recoge el event.target.id que hemos llamado igual que el campo name de nuesrtro array.
