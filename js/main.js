@@ -1,53 +1,34 @@
 "use strict";
 
-const tasks = [
-  {
-    name: "Recoger setas en el campo",
-    completed: true,
-  },
-  {
-    name: "Comprar pilas",
-    completed: true,
-  },
-  {
-    name: "Poner una lavadora de blancos",
-    completed: true,
-  },
-  {
-    name: "Aprender cómo se realizan las peticiones al servidor en JavaScript",
-    completed: true,
-  },
-];
+const GITHUB_USER = "noeliaaariza";
+const SERVER_URL = `https://dev.adalab.es/api/todo/${GITHUB_USER}`;
+
+const tasks = [];
 
 const listTasks = document.querySelector(".list");
-const spans = document.querySelectorAll('.js-span');
-const checks = document.querySelectorAll('.js-check');
+const spans = document.querySelectorAll(".js-span");
+const checks = document.querySelectorAll(".js-check");
 
-function renderTasks(){
+fetch(SERVER_URL)
+  .then((response) => response.json())
+  .then((data) => {
+    const tasksData = data.results;
+    renderTasks(tasksData);
+  });
 
-  for (let i = 0; i < tasks.length; i++) {
+function renderTasks(tareas) {
+  for (const tarea of tareas) {
     listTasks.innerHTML += `
-    <li class="elements">
-      <input  id= ${tasks.name} class="js-check" type="checkbox">
-      <span class="js-span">${tasks[i].name} </span>
-    </li>
-    `;
-    if(tasks[i].completed === true){
-      spans[i].classList.add('crossOut');
-    }
+      <li class="elements">
+        <input class="js-check" type="checkbox">
+        <span class="js-span">${tarea.name} </span>
+      </li>
+      `;
+    //console.log(tarea.name);
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-renderTasks();
+//Completa el código;
+//Guarda la respuesta obtenida enla variable para el listado de tareas: `tasks`
 
 // check.addEventListener('click', handleclick);
