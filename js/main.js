@@ -30,8 +30,18 @@ fetch(SERVER_URL)
   .then((response) => response.json())
   .then((data) => {
     const tasksData = data.results;
+    localStorage.setItem('taskOfDevil', JSON.stringify(tasksData));
     renderTasks(tasksData);
+    
   });
+  
+  const tasksLocalStorage = JSON.parse(localStorage.getItem('taskOfDevil'));
+  if (tasksLocalStorage !== null) {
+    renderTasks(tasksLocalStorage);
+  } else {
+   renderTasks();
+  }
+  
 
   function handleNewTask(event){
     event.preventDefault();
@@ -40,6 +50,7 @@ fetch(SERVER_URL)
       name: inputText.value, 
       completed: false,
     };
+
     
     tasks.push(newTask);
     for(const newTask of tasks){
