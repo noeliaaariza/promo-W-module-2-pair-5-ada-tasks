@@ -31,6 +31,23 @@ function renderTasks(tareas) {
     const textElement = document.createTextNode(tarea.name);
     spanElement.appendChild(textElement);
 
+
+    const checks = document.querySelectorAll(".js-check");
+     for (const check of checks) {
+    check.addEventListener("change", handleCheckboxChange);
+  }
+
+  }
+}
+
+function handleCheckboxChange(event) {
+  const checkbox = event.target;
+  const span = checkbox.nextElementSibling;
+
+  if (checkbox.checked) {
+    span.classList.add("crossOut");
+  } else {
+    span.classList.remove("crossOut");
   }
 }
 
